@@ -192,6 +192,7 @@ const SellProductModal = ({ product }: { product: IProduct & { key: string } }) 
             required={true}
             register={register}
             type='date'
+            min={new Date().toISOString().split('T')[0]}
           />
           <CustomInput
             name='quantity'

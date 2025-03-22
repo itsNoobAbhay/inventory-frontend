@@ -8,6 +8,7 @@ interface Props {
   register: any;
   required?: boolean;
   defaultValue?: any;
+  min?: string;
 }
 
 const CustomInput = ({
@@ -17,6 +18,7 @@ const CustomInput = ({
   label,
   register,
   type = 'text',
+  min,
 }: Props) => {
   return (
     <Row>
@@ -32,6 +34,7 @@ const CustomInput = ({
           placeholder={label}
           {...register(name, { required: required })}
           className={`input-field ${errors[name] ? 'input-field-error' : ''}`}
+          min={min}
         />
       </Col>
     </Row>
