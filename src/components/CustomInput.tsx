@@ -11,6 +11,7 @@ interface Props {
   min?: string;
 }
 
+
 const CustomInput = ({
   name,
   errors = {},
@@ -32,10 +33,19 @@ const CustomInput = ({
           id={name}
           type={type}
           placeholder={label}
-          {...register(name, { required: required })}
+          {...register(name, {
+            required: required,
+            ...(name === 'contactNo' && {
+              pattern: {
+                value: /^[0-9]{10}$/,
+                message: 'Phone number must be exactly 10 digits',
+              },
+            }),
+          })}
           className={`input-field ${errors[name] ? 'input-field-error' : ''}`}
           min={min}
         />
+        {errors[name] && <p className='error-message'>{errors[name].message}</p>}
       </Col>
     </Row>
   );
